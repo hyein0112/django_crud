@@ -11,7 +11,7 @@ def address_list(req):
     if req.method == 'GET':
         query_set = Addresses.objects.all()
         serializer = AddressesSerializers(query_set, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(serializer.data)
     
     elif req.method == 'POST':
         data = JSONParser().parse(req)
@@ -27,7 +27,7 @@ def address(req, id):
 
     if req.method == 'GET':
         serializer = AddressesSerializers(obj)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(serializer.data)
         
     elif req.method == 'PUT':
         data = JSONParser().parse(req)
